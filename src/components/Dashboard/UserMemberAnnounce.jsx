@@ -7,9 +7,7 @@ const UserMemberAnnounce = () => {
   const { data: announcements = [], isLoading } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://sports-club-management-server.vercel.app/announcements"
-      );
+      const res = await axios.get("http://localhost:8000/announcements");
       return res.data;
     },
   });

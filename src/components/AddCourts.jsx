@@ -12,10 +12,7 @@ const AddCourts = () => {
 
   const { mutate: addCourt, isPending } = useMutation({
     mutationFn: async (courtData) => {
-      const res = await axios.post(
-        "https://sports-club-management-server.vercel.app/courts",
-        courtData
-      );
+      const res = await axios.post("http://localhost:8000/courts", courtData);
       return res.data;
     },
     onSuccess: () => {

@@ -21,9 +21,7 @@ const PaymentForm = () => {
   } = useQuery({
     queryKey: ["paymentBookingId", id],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://sports-club-management-server.vercel.app/booking/${id}`
-      );
+      const res = await axios.get(`http://localhost:8000/booking/${id}`);
       return res.data;
     },
   });
@@ -55,7 +53,7 @@ const PaymentForm = () => {
       console.log("payment method", paymentMethod);
 
       const res = await axios.post(
-        "https://sports-club-management-server.vercel.app/create-payment-intent",
+        "http://localhost:8000/create-payment-intent",
         {
           amountInCents,
           id,
@@ -91,7 +89,7 @@ const PaymentForm = () => {
           };
 
           const paymentRes = await axios.post(
-            "https://sports-club-management-server.vercel.app/payments",
+            "http://localhost:8000/payments",
             { paymentData }
           );
           console.log(paymentRes.data);

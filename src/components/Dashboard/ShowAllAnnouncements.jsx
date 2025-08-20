@@ -18,18 +18,14 @@ const ShowAllAnnouncements = () => {
   const { data: announcements = [], isLoading } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://sports-club-management-server.vercel.app/announcements"
-      );
+      const res = await axios.get("http://localhost:8000/announcements");
       return res.data;
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: async (id) =>
-      await axios.delete(
-        `https://sports-club-management-server.vercel.app/announcements/${id}`
-      ),
+      await axios.delete(`http://localhost:8000/announcements/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries(["announcements"]);
       Swal.fire("Deleted!", "Announcement deleted successfully.", "success");
@@ -42,7 +38,7 @@ const ShowAllAnnouncements = () => {
   const updateMutation = useMutation({
     mutationFn: async ({ id, updatedData }) => {
       const res = await axios.patch(
-        `https://sports-club-management-server.vercel.app/announcements/${id}`,
+        `http://localhost:8000/announcements/${id}`,
         updatedData
       );
       return res.data;

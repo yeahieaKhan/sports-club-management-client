@@ -15,9 +15,7 @@ const ManageMember = () => {
   } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://sports-club-management-server.vercel.app/users?role=member"
-      );
+      const res = await axios.get("http://localhost:8000/users?role=member");
       return res.data;
     },
   });
@@ -25,9 +23,7 @@ const ManageMember = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
-      return await axios.delete(
-        `https://sports-club-management-server.vercel.app/users/${id}`
-      );
+      return await axios.delete(`http://localhost:8000/users/${id}`);
     },
     onSuccess: (res) => {
       if (res.data.success) {
@@ -87,7 +83,7 @@ const ManageMember = () => {
           <table className="table table-zebra">
             <thead className="bg-primary text-white text-base font-semibold">
               <tr>
-                <th>#</th>
+                <th>No</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Joined At</th>

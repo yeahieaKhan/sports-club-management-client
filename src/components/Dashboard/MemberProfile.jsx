@@ -16,7 +16,7 @@ const MemberProfile = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axios.get(
-        `https://sports-club-management-server.vercel.app/users/role-member?email=${user.email}`
+        `http://localhost:8000/users/role-member?email=${user.email}`
       );
       return res.data;
     },

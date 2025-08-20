@@ -22,9 +22,7 @@ const CourtShow = () => {
   } = useQuery({
     queryKey: ["courts"],
     queryFn: () =>
-      axios
-        .get("https://sports-club-management-server.vercel.app/courts")
-        .then((res) => res.data),
+      axios.get("http://localhost:8000/courts").then((res) => res.data),
   });
 
   console.log(courtsData);
@@ -72,7 +70,7 @@ const CourtShow = () => {
     console.log(bookingInfo);
     try {
       const res = await axios.post(
-        "https://sports-club-management-server.vercel.app/bookings",
+        "http://localhost:8000/bookings",
         bookingInfo
       );
       console.log(res.data);

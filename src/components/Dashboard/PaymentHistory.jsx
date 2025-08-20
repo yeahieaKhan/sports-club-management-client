@@ -9,36 +9,43 @@ const PaymentHistory = () => {
   const {
     data: payments = [],
     isLoading,
-    error,
+    isError,
   } = useQuery({
     queryKey: ["payment-history", user?.email],
     queryFn: async () => {
       const res = await axios.get(
-        `https://sports-club-management-server.vercel.app/payment-history?email=${user?.email}`
+        `http://localhost:8000/payment-history?email=${user?.email}`
       );
       return res.data;
     },
     enabled: !!user?.email,
   });
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
-  if (error)
+  if (isLoading)
+    return <p className="text-center py-10 font-semibold">Loading...</p>;
+  if (isError)
     return (
-      <p className="text-red-500 text-center py-10">Failed to load data</p>
+      <p className="text-center py-10 text-red-500 font-semibold">
+        Failed to load data
+      </p>
     );
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Payment History</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">
+        💳 Payment History
+      </h2>
 
       {payments.length === 0 ? (
-        <p className="text-center text-gray-500">No payment records found.</p>
+        <p className="text-center text-gray-500 text-lg">
+          No payment records found.
+        </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full border border-gray-200">
-            <thead className="bg-base-200">
+        <div className="overflow-x-auto rounded-xl shadow-xl bg-base-100">
+          <table className="table table-zebra w-full">
+            <thead className="bg-primary text-white text-base font-semibold">
               <tr>
-                <th>#</th>
+                <th>No</th>
                 <th>Transaction ID</th>
                 <th>Amount (৳)</th>
                 <th>Payment Date</th>
@@ -48,8 +55,10 @@ const PaymentHistory = () => {
               {payments.map((pay, index) => (
                 <tr key={pay._id}>
                   <td>{index + 1}</td>
-                  <td className="text-blue-600">{pay.transactionId}</td>
-                  <td>{pay.amount}</td>
+                  <td className="text-blue-600 font-medium">
+                    {pay.transactionId}
+                  </td>
+                  <td>৳{pay.amount}</td>
                   <td>{new Date(pay.paymentDate).toLocaleString()}</td>
                 </tr>
               ))}

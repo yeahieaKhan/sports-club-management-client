@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../contextApi/AuthContext";
+import { AuthContext } from "../../../contextApi/AuthContext";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,17 +14,13 @@ const AdminProfile = () => {
   } = useQuery({
     queryKey: ["courts"],
     queryFn: () =>
-      axios
-        .get("https://sports-club-management-server.vercel.app/courts")
-        .then((res) => res.data),
+      axios.get("http://localhost:8000/courts").then((res) => res.data),
   });
 
   const { data: roleUser = [] } = useQuery({
     queryKey: ["user-role"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://sports-club-management-server.vercel.app/users/role/user"
-      );
+      const res = await axios.get("http://localhost:8000/users/role/user");
       return res.data;
     },
   });
@@ -33,9 +29,7 @@ const AdminProfile = () => {
   const { data: roleMembers = [] } = useQuery({
     queryKey: ["role-members"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://sports-club-management-server.vercel.app/users/role/member"
-      );
+      const res = await axios.get("http://localhost:8000/users/role/member");
       return res.data;
     },
   });

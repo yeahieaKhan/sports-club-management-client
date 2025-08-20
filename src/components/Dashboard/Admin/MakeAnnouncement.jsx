@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../contextApi/AuthContext";
+import { AuthContext } from "../../../contextApi/AuthContext";
 
 const MakeAnnouncement = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const MakeAnnouncement = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data) => {
       const response = await axios.post(
-        "https://sports-club-management-server.vercel.app/announcements",
+        "http://localhost:8000/announcements",
         data
       );
       return response.data;

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Happy Clients",
+    "value": 70
+  },
+  {
+    "id": 2,
+    "title": "Years Experience",
+    "value": 15
+  },
+  {
+    "id": 3,
+    "title": "Sports Courts",
+    "value": 8
+  },
+  {
+    "id": 4,
+    "title": "Trainers",
+    "value": 12
+  },
+  {
+    "id": 5,
+    "title": "Tournaments Won",
+    "value": 25
+  },
+  {
+    "id": 6,
+    "title": "Active Programs",
+    "value": 10
+  },
+  {
+    "id": 7,
+    "title": "Annual Events",
+    "value": 5
+  },
+  {
+    "id": 8,
+    "title": "Member Countries",
+    "value": 3
+  }
+]

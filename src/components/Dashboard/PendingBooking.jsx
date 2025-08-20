@@ -23,7 +23,7 @@
 //     enabled: !!user?.email, // Prevents running before user is loaded
 //     queryFn: async () => {
 //       const res = await axios.get(
-//         `https://sports-club-management-server.vercel.app/pending/bookingStatus?email=${user.email}`
+//         `http://localhost:8000/pending/bookingStatus?email=${user.email}`
 //       );
 //       return res.data;
 //     },
@@ -34,7 +34,7 @@
 //   // delete booking
 //   const deleteMutation = useMutation({
 //     mutationFn: async (id) => {
-//       const res = await axios.delete(`https://sports-club-management-server.vercel.app/bookings/${id}`);
+//       const res = await axios.delete(`http://localhost:8000/bookings/${id}`);
 //       return res.data;
 //     },
 //     onSuccess: () => {
@@ -194,7 +194,7 @@ const PendingBooking = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axios.get(
-        `https://sports-club-management-server.vercel.app/pending/bookingStatus?email=${user.email}`
+        `http://localhost:8000/pending/bookingStatus?email=${user.email}`
       );
       return res.data;
     },
@@ -202,9 +202,7 @@ const PendingBooking = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
-      const res = await axios.delete(
-        `https://sports-club-management-server.vercel.app/bookings/${id}`
-      );
+      const res = await axios.delete(`http://localhost:8000/bookings/${id}`);
       return res.data;
     },
     onSuccess: () => {

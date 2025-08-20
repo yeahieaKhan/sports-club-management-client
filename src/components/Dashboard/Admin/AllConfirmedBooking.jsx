@@ -1,73 +1,76 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
-import { AuthContext } from "../../contextApi/AuthContext";
+import React from "react";
 
-const ConfirmedbookingMember = () => {
-  const { user } = useContext(AuthContext);
+const AllConfirmedBooking = () => {
   const {
-    data: bookingsConfirmedMember = [],
+    data: bookingsConfirmed = [],
     isLoading,
-    isError,
+    error,
   } = useQuery({
-    queryKey: ["confirmed-bookings", user.email],
+    queryKey: ["confirmed-bookings"],
     queryFn: async () => {
-      const res = await axios.get(
-        `http://localhost:8000/confirmed-booking-members?email=${user.email}`
-      );
+      const res = await axios.get("http://localhost:8000/confirmed-booking");
       return res.data;
     },
   });
 
-  if (isLoading)
-    return <p className="text-center py-10 font-semibold">Loading...</p>;
-  if (isError)
-    return (
-      <p className="text-center py-10 text-red-500 font-semibold">
-        Failed to load data
-      </p>
-    );
-
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">
-        ✅ Confirmed Bookings
+      <h2 className="text-3xl font-bold text-center mb-6">
+        ✅ All Confirmed Bookings
       </h2>
 
-      {bookingsConfirmedMember.length === 0 ? (
-        <p className="text-center text-gray-500 text-lg">
+      {isLoading && (
+        <div className="space-y-3">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="skeleton h-20 w-full rounded-xl"></div>
+          ))}
+        </div>
+      )}
+
+      {error && (
+        <div className="alert alert-error shadow-lg">
+          <span>Failed to load data.</span>
+        </div>
+      )}
+
+      {!isLoading && !error && bookingsConfirmed.length === 0 && (
+        <div className="text-center text-gray-500 text-lg">
           No confirmed bookings found.
-        </p>
-      ) : (
+        </div>
+      )}
+
+      {!isLoading && !error && bookingsConfirmed.length > 0 && (
         <div className="overflow-x-auto rounded-xl shadow-xl bg-base-100">
-          <table className="table table-zebra w-full">
+          <table className="table table-zebra">
             <thead className="bg-primary text-white text-base font-semibold">
               <tr>
-                <th>No</th>
+                <th>#</th>
                 <th>Court Type</th>
                 <th>Booked By</th>
                 <th>Booking Date</th>
-                <th>Slots</th>
+                <th>Booked Slots</th>
                 <th>Price</th>
                 <th>Payment Status</th>
               </tr>
             </thead>
             <tbody>
-              {bookingsConfirmedMember.map((booking, index) => (
+              {bookingsConfirmed.map((booking, index) => (
                 <tr key={booking._id}>
                   <td>{index + 1}</td>
                   <td>{booking.courtType}</td>
                   <td>{booking.name}</td>
                   <td>{booking.bookingDate}</td>
-                  <td className="text-sm">{booking.slots.join(", ")}</td>
+                  <td>{booking.slots.join(", ")}</td>
                   <td>৳{booking.price}</td>
                   <td>
                     <span
-                      className={`badge ${
+                      className={`badge text-white uppercase ${
                         booking.payment_status === "paid"
                           ? "badge-success"
-                          : "badge-error"
-                      } text-white`}
+                          : "badge-warning"
+                      }`}
                     >
                       {booking.payment_status}
                     </span>
@@ -82,4 +85,4 @@ const ConfirmedbookingMember = () => {
   );
 };
 
-export default ConfirmedbookingMember;
+export default AllConfirmedBooking;

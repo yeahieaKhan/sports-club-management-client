@@ -17,9 +17,7 @@ const useUsersRole = () => {
     enabled: !authLoading && !!email,
     queryKey: ["userRole", email],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://sports-club-management-server.vercel.app/users/${email}/role`
-      );
+      const res = await axios.get(`http://localhost:8000/users/${email}/role`);
       console.log(res.data);
 
       return res.data.role;

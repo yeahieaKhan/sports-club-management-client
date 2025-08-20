@@ -7,25 +7,27 @@ import Register from "../Auth/Register";
 import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import AddCourts from "../components/AddCourts";
 import CourtShow from "../pages/CourtShow";
-import AllCourts from "../components/Dashboard/AllCourts";
+import AllCourts from "../components/Dashboard/Admin/AllCourts";
 import ApproveBooking from "../components/Dashboard/ApproveBooking";
-import AllUsers from "../components/Dashboard/AllUsers";
-import ManageBooking from "../components/Dashboard/ManageBooking";
+import AllUsers from "../components/Dashboard/Admin/AllUsers";
+import ManageBooking from "../components/Dashboard/Admin/ManageBooking";
 import PendingBooking from "../components/Dashboard/PendingBooking";
-import AdminProfile from "../components/Dashboard/AdminProfile";
+
 import UserProfile from "../components/Dashboard/UserProfile";
-import ManageMember from "../components/Dashboard/ManageMember";
+import ManageMember from "../components/Dashboard/Admin/ManageMember";
 import AdminRouter from "./AdminRouter";
 import Forbidden from "../pages/Forbidden";
-import MakeAnnouncement from "../components/Dashboard/MakeAnnouncement";
+
 import ShowAllAnnouncements from "../components/Dashboard/ShowAllAnnouncements";
 import UserMemberAnnounce from "../components/Dashboard/UserMemberAnnounce";
 import Payment from "../components/Dashboard/Payment/Payment";
 import MemberRouter from "../components/Dashboard/MemberRouter";
 import MemberProfile from "../components/Dashboard/MemberProfile";
-import AllConfirmedBooking from "../components/Dashboard/AllConfirmedBooking";
+import AllConfirmedBooking from "../components/Dashboard/Admin/AllConfirmedBooking";
 import ConfirmedbookingMember from "../components/Dashboard/ConfirmedbookingMember";
 import PaymentHistory from "../components/Dashboard/PaymentHistory";
+import AdminProfile from "../components/Dashboard/Admin/AdminProfile";
+import MakeAnnouncement from "../components/Dashboard/Admin/MakeAnnouncement";
 
 export const router = createBrowserRouter([
   {

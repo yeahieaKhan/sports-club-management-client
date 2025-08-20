@@ -34,7 +34,7 @@ const Register = () => {
         };
 
         const userRes = await axios.post(
-          "https://sports-club-management-server.vercel.app/users",
+          "http://localhost:8000/users",
           userInfo
         );
         console.log(userRes.data);

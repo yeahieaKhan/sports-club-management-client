@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { AuthContext } from "../../contextApi/AuthContext";
+import { AuthContext } from "../../../contextApi/AuthContext";
 
 const slotTimes = [
   "8:00 AM - 9:00 AM",
@@ -55,7 +55,7 @@ const UpdateCourtModal = ({ court, onClose, refetch }) => {
       };
 
       await axios.patch(
-        `https://sports-club-management-server.vercel.app/courts/${court._id}?email=${user.email}`,
+        `http://localhost:8000/courts/${court._id}?email=${user.email}`,
         updatedData
       );
 

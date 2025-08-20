@@ -33,10 +33,7 @@ const Login = () => {
         };
 
         await axios
-          .post(
-            "https://sports-club-management-server.vercel.app/users",
-            userInfo
-          )
+          .post("http://localhost:8000/users", userInfo)
           .then((res) => {
             console.log("Inserted response", res.data);
           })
@@ -67,10 +64,7 @@ const Login = () => {
         };
 
         await axios
-          .post(
-            "https://sports-club-management-server.vercel.app/users",
-            userInfo
-          )
+          .post("http://localhost:8000/users", userInfo)
           .then((res) => {
             console.log("Inserted response", res.data);
           })
@@ -134,7 +128,7 @@ const Login = () => {
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+              <button className="btn btn-secondary mt-4">Login</button>
               <div>
                 <p>
                   Register your account ?{" "}
