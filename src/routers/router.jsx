@@ -67,6 +67,7 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     children: [
+      { path: "", element: <h2>Hello</h2> },
       {
         path: "addCourts",
         element: (
